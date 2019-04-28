@@ -8,19 +8,19 @@ def initiate_api():
     api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configuration))
     return api_instance
 
-def list_namespaces():
-    """Function to list namespace using Kubernetes Rest API"""
+def list_quota():
+    """Function to list Quota of Namespaces"""
     try:
         api_instance = initiate_api()
         namespaces = api_instance.list_namespace().items
         for namespace in namespaces:
-            if namespace.metadata.name is not None:
-                print(namespace.metadata)
+            quota = api_instance.list_namespaced_resource_quota(namespace.metadata.name).items
+            if not quota:
+                print(namespace.metadata.name + " named namespace don't have any quota")
+            else:
+                print(quota)
     except ApiException as e:
-        print("Exception when list_namespace: %s\n" % e)
+        print("Exception when calling list_namespace_resource_quota: %s\n" % e)
 
 def main_function():
-    """Main Function for calling other functions"""
-    list_namespaces()
-
-main_function()
+    list_quota()
