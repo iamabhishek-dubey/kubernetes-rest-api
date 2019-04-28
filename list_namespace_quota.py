@@ -24,3 +24,5 @@ def list_quota():
 
 def main_function():
     list_quota()
+
+main_function()
