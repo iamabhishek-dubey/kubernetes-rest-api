@@ -32,7 +32,7 @@ func main() {
 	}
 
 	for i, namespace := range namespaces.Items {
-		if i != nil {
+		if i != 1000000 {
 			fmt.Println(namespace.GetName())
 		}
 	}
