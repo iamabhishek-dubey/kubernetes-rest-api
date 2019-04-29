@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -32,5 +31,7 @@ func main() {
 		log.Fatalln("failed to get pods:", err)
 	}
 
-	fmt.Println(namespaces)
+	for i, namespace := range namespaces.Items {
+		fmt.Println(namespace)
+	}
 }
