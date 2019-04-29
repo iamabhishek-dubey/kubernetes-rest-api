@@ -32,6 +32,7 @@ func main() {
 	}
 
 	for i, namespace := range namespaces.Items {
-		fmt.Println(namespace)
+		log.Println("Iteration number: ", i)
+		fmt.Println(namespace.GetName())
 	}
 }
